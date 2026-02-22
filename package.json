@@ -49,15 +49,12 @@
     "type": "git",
     "url": "git+https://github.com/ismkerem/react-native-android-raw-sensors.git"
   },
-  "author": "İsmail Kerem Gül <ismkerem61@gmail.com> (https://github.com/ismkerem)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ismkerem/react-native-android-raw-sensors/issues"
   },
   "homepage": "https://github.com/ismkerem/react-native-android-raw-sensors#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
+
   "devDependencies": {
     "@eslint/compat": "^1.3.2",
     "@eslint/eslintrc": "^3.3.1",
