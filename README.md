@@ -316,9 +316,3 @@ export type SignificantMotionData = { triggered: boolean; timestamp: number };
 - **Hardware trigger** for significant motion (no polling)
 - `updateInterval` controls the minimum sensor sampling period; actual rate depends on hardware and OS scheduling
 - Lower intervals (e.g. 16ms) increase CPU usage — use the slowest interval that meets your needs
-
----
-
-## 📄 License
-
-MIT © [ismkerem](https://github.com/ismkerem)
