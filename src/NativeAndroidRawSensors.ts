@@ -34,11 +34,11 @@ export interface Spec extends TurboModule {
   startRotationVector(updateInterval: number): void;
   stopRotationVector(): void;
 
-  getAvailableSensorsList():string[];
+  getAvailableSensorsList(): ReadonlyArray<Object>;
 
-  startSignificantMotion():void;
-  stopSignificantMotion():void;
-  
+  startSignificantMotion(): void;
+  stopSignificantMotion(): void;
+
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('AndroidRawSensors');

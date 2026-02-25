@@ -33,15 +33,12 @@ export default function App() {
   const accuracyInfo = useSensorAccuracy();
 
   // State to hold the list of available sensors on the device
-  const [availableSensors, setAvailableSensors] = useState<string[]>([]);
+  const [availableSensors, setAvailableSensors] = useState<ReadonlyArray<Object>>([]);
   useEffect(() => {
     try {
       const sensors = AndroidRawSensors.getAvailableSensorsList();
-
       if (sensors) {
-        const sensorNames = sensors.map((sensor: any) => sensor.name);
-
-        setAvailableSensors(sensorNames);
+        setAvailableSensors(sensors);
       }
     } catch (error) {
       console.warn('Failed to fetch sensors list:', error);
@@ -72,7 +69,7 @@ export default function App() {
         <Text style={styles.title}>Available Device Sensors</Text>
         <Text style={styles.text}>
           {availableSensors.length > 0
-            ? availableSensors.join(', ')
+            ? availableSensors.map((s: any) => s.name).join(', ')
             : 'Scanning device sensors...'}
         </Text>
       </View>

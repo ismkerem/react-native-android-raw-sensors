@@ -64,7 +64,7 @@ class AndroidRawSensorsModule(reactContext: ReactApplicationContext) :
   }
 
 
-  val triggerEventListener =
+ private val triggerEventListener =
       object : TriggerEventListener() {
         override fun onTrigger(p0: TriggerEvent?) {
           if (p0 == null) return

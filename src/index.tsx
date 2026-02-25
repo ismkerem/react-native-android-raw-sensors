@@ -1,6 +1,6 @@
 import { NativeEventEmitter } from 'react-native';
 import AndroidRawSensors from './NativeAndroidRawSensors';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const sensorEmitter = new NativeEventEmitter(AndroidRawSensors as any);
 
@@ -202,25 +202,32 @@ export function useSensorAccuracy() {
 
 export function useSignificantMotion(onTrigger?: (event: SignificantMotionData) => void) {
   const [data, setData] = useState<SignificantMotionData | null>(null);
+  const onTriggerRef = useRef(onTrigger);
+
+  // Her render'da ref'i güncelle ama effect yeniden çalışmasın
+  useEffect(() => {
+    onTriggerRef.current = onTrigger;
+  });
 
   useEffect(() => {
     AndroidRawSensors.startSignificantMotion();
 
     const sub = sensorEmitter.addListener('SignificantMotion', (event: any) => {
       setData(event);
-      
-      if (onTrigger) {
-        onTrigger(event);
+
+      if (onTriggerRef.current) {
+        onTriggerRef.current(event);
       }
 
-      AndroidRawSensors.startSignificantMotion(); 
+      // Trigger sensor one-shot'tır; her tetiklenmeden sonra yeniden kayıt gerekir
+      AndroidRawSensors.startSignificantMotion();
     });
 
     return () => {
       sub.remove();
       AndroidRawSensors.stopSignificantMotion();
     };
-  }, [onTrigger]);
+  }, []); // ← artık dependency yok, sadece mount/unmount
 
   return data;
 }
