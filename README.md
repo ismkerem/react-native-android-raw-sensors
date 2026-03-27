@@ -10,17 +10,6 @@ High-performance Android raw sensor access for React Native using the **New Arch
 
 ---
 
-## 📦 Installation
-
-```bash
-npm install react-native-android-raw-sensors
-```
-
-or
-
-```bash
-yarn add react-native-android-raw-sensors
-```
 
 > **Requires React Native New Architecture (Turbo Modules)**. Make sure `newArchEnabled=true` is set in your `android/gradle.properties`.
 
